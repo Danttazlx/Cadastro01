@@ -3,9 +3,9 @@
 class Pessoa {
 
 
-    private String nome;
-    private String email;
-    private int idade;
+    public String nome;
+    public String email;
+    public int idade;
     private String Cpf;
 
 

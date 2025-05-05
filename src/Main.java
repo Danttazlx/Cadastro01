@@ -6,98 +6,88 @@ public class Main {
         Scanner Scanner = new Scanner(System.in);
         ArrayList<Pessoa> listaUsuario = new ArrayList<>();
 
-        int opcao;
-
-        System.out.println("Quantos usuários você quer cadastrar? ");
-        int Quantidade = Scanner.nextInt();
+        System.out.println("quantos usuarios voce gostaria de cadastrar: ");
+        int quantidade = Scanner.nextInt();
         Scanner.nextLine();
 
-        for (int i = 0; i < Quantidade; i++) {
-            System.out.println((i + ""));
+        for (int i = 0; i <quantidade ; i++) {
+            System.out.println(  (i + 1) + " Cadastro");
         }
 
-       String NOME;
+        String nome;
 
         while (true) {
             System.out.println("Digite seu Nome Completo:  ");
-            NOME = Scanner.nextLine();
+            nome = Scanner.nextLine();
 
-            if ( NOME.matches("^[a-zA-Z\s]{8,45}$")) {
+            if (nome.matches("^[a-zA-Z\s]{8,45}$")) {
                 System.out.println("Valido");
                 break;
 
-            } else{
+            } else {
                 System.out.println("tente novamente");
             }
 
         }
 
-        String entrada;
-        int idade = -1;
-
-        while (idade < 0 ) {
+        int idade;
+        while (true) {
             System.out.println("Digite sua idade: ");
-            entrada = Scanner.nextLine();
+            String entrada = Scanner.nextLine();
 
-            if (entrada.matches("^[0-9]{18,80}$")) {
-                System.out.println("Valido");
+            try {
+                idade = Integer.parseInt(entrada.trim());
+                if (idade >= 18 && idade <= 90) {
+                    System.out.println( "Idade válida" );
                     break;
-            }else
-                System.out.println("idade invalida, (Maior de +18)");
-        }
-
-
-        String cpf;
-
-        while (true){
-            System.out.println("Digite seu CPF: (11 Numeros");
-                cpf = Scanner.nextLine();
-
-
-            if ( cpf.matches("\\d{11}")) {
-                System.out.println("CPF Valido.");
-                break;
-            } else{
-                System.out.println("CPF Invalido!");
+                } else {
+                    System.out.println("idade invalida.");
+                }
+            } catch (NumberFormatException erro) {
+                System.out.println("Erro: você digitou algo que não é número.");
             }
         }
 
-        String EMAIL;
-        System.out.println("Digite seu Email: ");
-        String email = Scanner.nextLine();
+            String cpf;
 
-        while (true){
-
-            System.out.println("Digite seu email: ");
-            EMAIL = Scanner.nextLine();
-
-            if (EMAIL.matches("^[a-zA-Z]+@[a-zA-Z]+\\.[a-zA-Z]{2,}$"
-            )){
-                System.out.println("Email Valido!");
-                break;
-
-            }else
-                System.out.println("Email invalido, Tente Novamente");
+            while (true) {
+                System.out.println("Digite seu CPF: (11 Numeros");
+                cpf = Scanner.nextLine();
 
 
+                if (cpf.matches("\\d{11}")) {
+                    System.out.println("CPF Valido.");
+                    break;
+                } else {
+                    System.out.println("CPF Invalido!");
+                }
+            }
+
+            String email;
+            while (true) {
+
+                System.out.println("Digite seu email: ");
+                email = Scanner.nextLine();
+
+                if (email.matches("^[a-zA-Z-0-9_%+-]+@[a-zA-Z.]+\\.[a-zA-Z]{2,}$"
+                )) {
+                    System.out.println("Email Valido!");
+                    break;
+
+                } else
+                    System.out.println("Email invalido, Tente Novamente");
+            }
+        Pessoa pessoa2 = new Pessoa(nome,email,idade,cpf);
+        listaUsuario.add(pessoa2);
+
+        System.out.println("--- lISTA DE USUARIOS ----");
+        for (Pessoa pessoa :listaUsuario){
+            pessoa.exibir();
         }
 
-
-        Pessoa Usuario = new Pessoa(NOME,EMAIL,idade,cpf );
-        listaUsuario.add(Usuario);
-
-
-        System.out.println("\n--- Cadastro ---");
-        for (Pessoa user : listaUsuario) {
-            user.exibir();
-
-            Scanner.close();
-
+            }
 
         }
-
-    }
-}
 
 
 
